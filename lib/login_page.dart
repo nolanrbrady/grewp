@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:io';
 // Import Pages
 import 'home.dart';
 import 'messages.dart';
+import 'create_account.dart';
 // Importing Firebase Auth
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:grewp/services/auth.dart';
 
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -15,21 +20,19 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => new _MyHomePageState();
 }
 
+
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  // Authentication Initiation
+  UserData authUser = new UserData();
+
   String _email = '';
   String _password = '';
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _submitLogin() {
+  void _submitLogin() async {
     print("Email: " + _email);
     print("Password: " + _password);
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 labelText: "Enter your Username"
               ),
               onChanged: (String value){
-                _email = value;
+                authUser.email = value;
               },
             ),
             new TextField(
@@ -61,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 labelText: "Enter your Password"
               ),
               onChanged: (String value){
-                _password = value;
+                authUser.password = value;
               },
             ),
             new Padding(
@@ -95,6 +98,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     textColor: Theme.of(context).accentColor,
                     onPressed: (){
                       print("Create Account Button Pressed");
+                      Navigator.push(
+                        context,
+                        new MaterialPageRoute(builder: (context) => new CreateAccount()));
                     },
                   )
                 ],
