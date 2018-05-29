@@ -16,7 +16,7 @@ class _CreateAccount extends State<CreateAccount> {
 // Declaring Firebase Vars
 UserData newUser = new UserData();
 
-Future<String> _handleCreateUser(UserData newUser) async {
+Future<String> _handleCreateUser() async {
   await _auth.createUserWithEmailAndPassword(
     email: newUser.email,
     password: newUser.password).catchError((err) =>
