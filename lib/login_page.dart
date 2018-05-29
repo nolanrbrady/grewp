@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 // Import Pages
 import 'home.dart';
 import 'messages.dart';
+// Importing Firebase Auth
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class MyHomePage extends StatefulWidget {
