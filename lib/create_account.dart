@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+// Import Pages
+import 'home.dart';
 // Firebase Packages
 import 'package:grewp/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,7 +21,11 @@ UserData newUser = new UserData();
 Future<String> _handleCreateUser() async {
   await _auth.createUserWithEmailAndPassword(
     email: newUser.email,
-    password: newUser.password).catchError((err) =>
+    password: newUser.password).then(
+      Navigator.push(
+        context,
+        new MaterialPageRoute(builder: (context) => new HomePage()));
+    ).catchError((err) =>
       print("There was an error: "));
     return statusMsg;
   }

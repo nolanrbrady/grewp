@@ -27,10 +27,34 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String _email = '';
   String _password = '';
+  String authSuccess = "false";
 
-  void _submitLogin() async {
-    print("Email: " + _email);
-    print("Password: " + _password);
+  Future<String>_submitLogin() async {
+  String authMssg = "Login Successful";
+   print(authUser.email);
+   print(authUser.password); 
+  await _auth.signInWithEmailAndPassword(
+     email: authUser.email,
+     password: authUser.password,
+   ).then((res) => (
+     Navigator.push(
+       context,
+       new MaterialPageRoute(builder: (context) => new HomePage())
+     ))).catchError((err) => 
+    //  print(err)
+    new AlertDialog(
+     title: new Text('There was an error'),
+     actions: <Widget>[
+       new FlatButton(
+         child: new Text('Print Error'),
+         onPressed: (){
+           print(err);
+         },
+       )
+     ],
+    )
+    );
+   return authMssg;
   }
 
 
@@ -79,9 +103,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: new Text('Login'),
                     onPressed: (){
                       _submitLogin();
-                      Navigator.push(
-                            context,
-                            new MaterialPageRoute(builder: (context) => new HomePage()));
                     },
                   ),
                 ],
