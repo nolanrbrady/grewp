@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "885148230844",
+    "firebase_url": "https://grewp-f683c.firebaseio.com",
+    "project_id": "grewp-f683c",
+    "storage_bucket": "grewp-f683c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885148230844:android:d1d6bbb1afbbe848",
+        "android_client_info": {
+          "package_name": "com.example.grewp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885148230844-mv13c81900tm1tcdfjajm6mb60r31c46.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "885148230844-mv13c81900tm1tcdfjajm6mb60r31c46.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4QulF_P9Ozfnu_P1x82XRD8HmYu3ri94"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
