@@ -22,9 +22,9 @@ Future<String> _handleCreateUser() async {
   await _auth.createUserWithEmailAndPassword(
     email: newUser.email,
     password: newUser.password).then(
-      Navigator.push(
+    Navigator.push(
         context,
-        new MaterialPageRoute(builder: (context) => new HomePage()));
+        new MaterialPageRoute(builder: (context) => new HomePage()))
     ).catchError((err) =>
       print("There was an error: "));
     return statusMsg;
@@ -62,6 +62,7 @@ Future<String> _handleCreateUser() async {
               ),
               new TextField(
                 textAlign: TextAlign.center,
+                keyboardType: TextInputType.emailAddress,
                 decoration: new InputDecoration(
                   hintText: 'Email',
                   labelText: 'Your Email Goes Here'

@@ -57,6 +57,12 @@ class _MyHomePageState extends State<MyHomePage> {
    return authMssg;
   }
 
+  void _testLogin(){
+    Navigator.push(
+      context,
+      new MaterialPageRoute(builder: (context) => new HomePage()));
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +108,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     textColor: Colors.white,
                     child: new Text('Login'),
                     onPressed: (){
-                      _submitLogin();
+                      //_submitLogin();
+                      _testLogin(); // Remove this to authenticate
                     },
                   ),
                 ],
