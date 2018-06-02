@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'dart:io';
 // Import Pages
 import 'home.dart';
-import 'messages.dart';
 import 'create_account.dart';
 // Importing Firebase Auth
 import 'package:firebase_auth/firebase_auth.dart';

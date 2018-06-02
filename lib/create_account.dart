@@ -21,8 +21,9 @@ UserData newUser = new UserData();
 Future<String> _handleCreateUser() async {
   await _auth.createUserWithEmailAndPassword(
     email: newUser.email,
-    password: newUser.password).then(
-    Navigator.push(
+    password: newUser.password)
+    .then(
+      Navigator.push(
         context,
         new MaterialPageRoute(builder: (context) => new HomePage()))
     ).catchError((err) =>
