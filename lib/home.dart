@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // Import Pages
 import 'messages.dart';
 import 'events.dart';
+import 'event_list.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -41,7 +42,7 @@ class _HomePage extends State<HomePage> {
           onPressed: (){
             Navigator.push(
               context,
-              new MaterialPageRoute(builder: (context) => new EventsPage()));
+              new MaterialPageRoute(builder: (context) => new EventList()));
           },
         ),
       ),
