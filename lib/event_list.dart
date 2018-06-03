@@ -45,7 +45,8 @@ class EventList extends StatefulWidget {
 
 class _EventList extends State<EventList> {
 
-  Map data;
+  List data;
+  Map listData;
 
 @override
 void initState(){
@@ -57,10 +58,11 @@ void initState(){
 Future<Event> _fetchEvents() async {
   final response = await http.get('http://api.eventful.com/json/events/search?...&where=boulder&app_key=KvcFJJmZhDw8CZJw');
   this.setState((){
-    data = JSON.decode(response.body);
+    listData = JSON.decode(response.body);
+    data = listData['events']['event'];
   });
    print(data);
-  return new Event.fromJson(data);
+  return new Event.fromJson(listData);
 }
 
   @override
@@ -76,7 +78,7 @@ Future<Event> _fetchEvents() async {
         ),
       ),
       body: new ListView.builder(
-        itemCount: 10,
+        itemCount: data == null ? 0 : data.length, 
         itemExtent: 150.0,
         itemBuilder: (BuildContext context, int index) {
           return new Card(
@@ -84,10 +86,10 @@ Future<Event> _fetchEvents() async {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                const ListTile(
+                new ListTile(
                   leading: const Icon(Icons.event),
-                  title: const Text('Card Title'),
-                  subtitle: const Text('This is card at index'),
+                  title: new Text(data[index]['title']),
+                  subtitle: const Text("Testing the thing"),
                 ),
                 new ButtonTheme.bar(
                   child: new ButtonBar(
@@ -120,9 +122,13 @@ Future<Event> _fetchEvents() async {
         backgroundColor: Theme.of(context).accentColor,
         child: new Icon(Icons.add),
         onPressed: () {
+          print(data[2]['title']);
+          print(data.length);
+          print(data[2]['city_name']);
+          print(data[2]['description']);
           //_toggleEvent();
-          Navigator.push(context,
-              new MaterialPageRoute(builder: (context) => new EventsPage()));
+          // Navigator.push(context,
+          //     new MaterialPageRoute(builder: (context) => new EventsPage()));
         },
       ),
     );
