@@ -1,17 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'package:convert/convert.dart';
+import 'dart:convert';
 import 'events.dart';
 
-class Events {
-  String name;
-  String location;
-  String description;
+// Events from Eventful for the Flat list
+class Event {
+  final String url;
+  final String cityName;
+  final String description;
+  final String title;
+  final String thumbNail;
+  final String image;
 
-  Events({this.name, this.location, this.description});
+  Event({
+    this.url,
+    this.cityName,
+    this.description,
+    this.title,
+    this.thumbNail,
+    this.image
+  });
+
+  factory Event.fromJson(Map<String, dynamic> json){
+    return new Event(
+      url: json['url'],
+      cityName: json['city_name'],
+      description: json['description'],
+      title: json['title'],
+      thumbNail: json['image.thumb'],
+      image: json['image.medium']
+    );
+  }
 }
 
 class EventList extends StatefulWidget {
   EventList({Key key, this.title}) : super(key: key);
-
   final String title;
 
   @override
@@ -19,21 +44,24 @@ class EventList extends StatefulWidget {
 }
 
 class _EventList extends State<EventList> {
-Events _event = new Events();
-List<Events> eventArray = []; // Hosts the events coming back and the ones created
 
-//   final _mockEvents = const <Events>[
-//     const Events(
-//      name: 'Bouldering',
-//      location: 'Boulder, CO',
-//       description: 'Going Bouldering in the flatirons'
-//    ),
-//    const Events(
-//      name: 'Running',
-//      location: 'Aspen, CO',
-//      description: 'Ultra run for shits and gigs'
-//    )
-//  ];
+  Map data;
+
+@override
+void initState(){
+    _fetchEvents();
+  }
+
+
+// API call to Eventful
+Future<Event> _fetchEvents() async {
+  final response = await http.get('http://api.eventful.com/json/events/search?...&where=boulder&app_key=KvcFJJmZhDw8CZJw');
+  this.setState((){
+    data = JSON.decode(response.body);
+  });
+   print(data);
+  return new Event.fromJson(data);
+}
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'event_list.dart';
 
+class Events {
+  String name;
+  String location;
+  String description;
+
+  Events({this.name, this.location, this.description});
+}
+
 class EventsPage extends StatefulWidget {
   @override
   _EventsPage createState() => new _EventsPage();
@@ -46,6 +54,8 @@ class _EventsPage extends State<EventsPage> {
         child: new Column(
           children: <Widget>[
             new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 new Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -57,35 +67,47 @@ class _EventsPage extends State<EventsPage> {
                     ),
                   ),
                 ),
-                new TextField(
-                  decoration: new InputDecoration(
-                      hintText: 'Fun in the Sun', labelText: 'Event Name'),
-                  onChanged: (String value) {
-                    _event.name = value;
-                  },
+                new Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: new TextField(
+                    decoration: new InputDecoration(
+                        hintText: 'Fun in the Sun', labelText: 'Event Name'),
+                    onChanged: (String value) {
+                      _event.name = value;
+                    },
+                  ),
                 ),
-                new TextField(
-                  decoration: new InputDecoration(
-                      hintText: 'Boulder', labelText: 'Where is it?'),
-                  onChanged: (String value) {
-                    _event.location = value;
-                  },
+                new Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: new TextField(
+                    decoration: new InputDecoration(
+                        hintText: 'Boulder', labelText: 'Where is it?'),
+                    onChanged: (String value) {
+                      _event.location = value;
+                    },
+                  ),
                 ),
-                new TextField(
-                  decoration: new InputDecoration(
-                      hintText: 'Who, what, when, where, and why',
-                      labelText: 'Add a Description'),
-                  onChanged: (String value) {
-                    _event.description = value;
-                  },
+                new Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: new TextField(
+                    decoration: new InputDecoration(
+                        hintText: 'Who, what, when, where, and why',
+                        labelText: 'Add a Description'),
+                    onChanged: (String value) {
+                      _event.description = value;
+                    },
+                  ),
                 ),
-                new RaisedButton(
-                  color: Theme.of(context).accentColor,
-                  textColor: Colors.white,
-                  child: new Text('Submit Event'),
-                  onPressed: () {
-                    _createEvents();
-                  },
+                new Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: new RaisedButton(
+                    color: Theme.of(context).accentColor,
+                    textColor: Colors.white,
+                    child: new Text('Submit Event'),
+                    onPressed: () {
+                      _createEvents();
+                    },
+                  ),
                 ),
               ],
             ),
