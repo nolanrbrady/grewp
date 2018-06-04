@@ -89,7 +89,7 @@ Future<Event> _fetchEvents() async {
                 new ListTile(
                   leading: const Icon(Icons.event),
                   title: new Text(data[index]['title']),
-                  subtitle: const Text("Testing the thing"),
+                  subtitle: new Text(data[index]['city_name']),
                 ),
                 new ButtonTheme.bar(
                   child: new ButtonBar(
@@ -122,13 +122,9 @@ Future<Event> _fetchEvents() async {
         backgroundColor: Theme.of(context).accentColor,
         child: new Icon(Icons.add),
         onPressed: () {
-          print(data[2]['title']);
-          print(data.length);
-          print(data[2]['city_name']);
-          print(data[2]['description']);
           //_toggleEvent();
-          // Navigator.push(context,
-          //     new MaterialPageRoute(builder: (context) => new EventsPage()));
+          Navigator.push(context,
+              new MaterialPageRoute(builder: (context) => new EventsPage()));
         },
       ),
     );
